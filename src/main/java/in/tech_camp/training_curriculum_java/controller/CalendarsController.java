@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,11 +66,15 @@ public class CalendarsController {
               todayPlans.add(plan.getPlan());
           }
       }
+      
+      int wdayNum = (todaysDate.getDayOfWeek().getValue() + x) % 7;
+      
 
       day_map.put("month", currentDate.getMonthValue());
       day_map.put("date", currentDate.getDayOfMonth());
       day_map.put("plans", todayPlans);
-
+      day_map.put("wday", wdays[wdayNum]);
+      
       weekDays.add(day_map);
     }
 
